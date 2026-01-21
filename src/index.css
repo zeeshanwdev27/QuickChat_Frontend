@@ -1,0 +1,18 @@
+/* Google Outfit Font - import */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+
+
+/* use Google Font */
+*{
+    font-family: "Outfit", sans-serif;
+}
+
+
+
+/* remove scrollbar from entire site */
+::-webkit-scrollbar{
+    display: none;
+}
