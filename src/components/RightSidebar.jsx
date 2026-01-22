@@ -1,6 +1,6 @@
 import React from 'react'
 
-function RightSidebar() {
+function RightSidebar({ selectedUser, setSelectedUser }) {
   return (
     <div>
       RightSidebar

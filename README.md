@@ -10,4 +10,4 @@
 
 
 # Today Project Vid Timestamps
-35:00    to  1:05:00    (30mints)
+1:20:00    to  1:50:00    (30mints)
