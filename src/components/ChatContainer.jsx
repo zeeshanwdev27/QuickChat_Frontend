@@ -37,6 +37,7 @@ function ChatContainer({ selectedUser, setSelectedUser }) {
       <div className='flex flex-col h-[calc(100%-120px)] overflow-y-scroll p-3 pb-6'>
         { messagesDummyData.map(( msg, index )=>(
           <div key={index} className={`flex items-end gap-2 justify-end ${msg.senderId !== '680f50e4f10f3cd28382ecf9' && 'flex-row-reverse' }`}>
+            
             {msg.image ? (
               <img src={msg.image} alt='image' className='max-w-57.5 border border-gray-700 rounded-lg overflow-hidden mb-8'/>
             ): (
@@ -47,8 +48,8 @@ function ChatContainer({ selectedUser, setSelectedUser }) {
             <div className='text-center text-xs'>
               <img src={msg.senderId === '680f50e4f10f3cd28382ecf9' ? assets.avatar_icon : assets.profile_martin } className='w-7 rounded-full' alt="avatar_icon" />
               <p className='text-gray-500'>{formatMessageTime(msg.createdAt)}</p>
-              
             </div>
+
           </div>
         ))}
 
