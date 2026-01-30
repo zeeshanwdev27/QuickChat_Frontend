@@ -56,6 +56,7 @@ export const AuthProvider = ({ children })=>{
     const loginHandler = async( state, credentials )=>{
         try {
             const { data } = await axios.post(`/api/auth/${state}`, credentials)
+            
             if(data.success){
                 setAuthUser(data.userData)
                 connectSocket(data.userData)
