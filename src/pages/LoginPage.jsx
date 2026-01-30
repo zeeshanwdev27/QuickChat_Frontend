@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import assets from '../assets/assets'
+import { AuthContext } from '../context/AuthContext'
 
 function LoginPage() {
 
@@ -11,12 +12,20 @@ function LoginPage() {
   const [ bio, setBio ] = useState("")
   const [ isDataSubmitted, setIsDataSubmitted ] = useState(false)
 
+  const { loginHandler } = useContext(AuthContext)
+
+
+
   const onSubmitHandler = async(e)=>{
     e.preventDefault()
+
     if(currState === "Sign up" &&  !isDataSubmitted){
       setIsDataSubmitted(true)
       return 
     }
+
+    loginHandler(currState === "Sign up" ? "signup" : "login", {fullName, email, password, bio})
+
   }
 
 

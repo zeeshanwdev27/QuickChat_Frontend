@@ -15,4 +15,4 @@
 
 
 # Current Vid Timestamps
-4:06
+4:52

@@ -52,6 +52,55 @@ export const AuthProvider = ({ children })=>{
     }
 
 
+    // login or signup func handle for user auth & socket connection
+    const loginHandler = async( state, credentials )=>{
+        try {
+            const { data } = await axios.post(`/api/auth/${state}`, credentials)
+            if(data.success){
+                setAuthUser(data.userData)
+                connectSocket(data.userData)
+                axios.defaults.headers.common['token'] = data.token   //include token with all axios requests
+                setToken(data.token)
+                localStorage.setItem("token", data.token)
+                toast.success(data.message)
+            }else{
+                toast.error(data.message)
+            }
+            
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+
+    // logout func to handle user auth & socket disconnect
+    const logoutHandler = async()=>{
+        localStorage.removeItem("token")
+        setToken(null)
+        setAuthUser(null)
+        setOnlineUsers([])
+        axios.defaults.headers.common['token'] = null        //remove token with all next axios requests
+        toast.success("Logged out successfully")
+        socket.disconnect()
+    }
+
+
+    // Update profile fun to handle user profile
+    const updateProfile = async(body)=>{
+        try {
+            const {data} = await axios.put('/api/auth/update-profile', body)
+            if(data.success){
+                setAuthUser(data.user)
+                toast.success('Profile updated successfully')
+            }else{
+                 toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
+
+
 
 
     useEffect(()=>{
@@ -62,12 +111,19 @@ export const AuthProvider = ({ children })=>{
     },[])
 
 
+
+
     const value = {
         axios,
+        socket,
         authUser,
         onlineUsers,
-        socket
+        loginHandler,
+        logoutHandler,
+        updateProfile
     }
+
+    
 
 
 
