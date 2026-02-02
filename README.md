@@ -10,9 +10,3 @@
 
 # Env i used
 1. VITE_BACKEND_URL
-
-
-
-
-# Current Vid Timestamps
-5:30
